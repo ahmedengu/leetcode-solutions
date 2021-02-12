@@ -1,30 +1,17 @@
 function modifyString(s: string): string {
-    let prev;
-    let next;
-    let ret = '';
-
-    for (let i = 0; i < s.length; i++) {
-        if (s[i] === '?') {
-            next = getNext(s, i);
-            prev = getRand(prev, next);
-        } else {
-            prev = s[i];
+    return s.split('').reduce((acc, c, i, arr) => {
+        if (c === '?') {
+            let j = i;
+            while (arr[++j] === '?');
+            const prev = acc[acc.length - 1]?.charCodeAt(0);
+            const next = arr[j]?.charCodeAt(0);
+            c = String.fromCharCode(getRand(prev, next));
         }
-        ret += prev;
-    }
-
-    return ret;
+        return acc + c;
+    }, '');
 };
 
-function getNext(s: string, i: number): string {
-    while (s[i] === '?') i++;
-    return s[i];
-}
-
-function getRand(prev: string, next: string): string {
-    let c;
-    do {
-        c = String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-    } while (c === prev || c === next);
-    return c;
+function getRand(prev = 96, next: number): number {
+    if (prev === 122) prev = 96;
+    return ++prev === next ? getRand(prev, next) : prev;
 }
