@@ -1,8 +1,5 @@
 function isPrefixOfWord(sentence: string, searchWord: string): number {
-    const words = sentence.split(' ');
+    const found = sentence.split(' ').findIndex(word => word.startsWith(searchWord));
 
-    for (let i = 0; i < words.length; i++)
-        if (words[i].startsWith(searchWord)) return i + 1;
-
-    return -1;
+    return found === -1 ? -1 : found + 1;
 };
