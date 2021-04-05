@@ -1,9 +1,11 @@
 function longestPalindrome(s: string): string {
-    let max = '';
-    for (let i = 0; i < s.length; i++)
-        for (let j = s.length - 1; j >= i; j--)
-            if (max.length < j - i + 1 && isPalindrom(s, i, j)) max = s.slice(i, j + 1);
-    return max;
+    const len = s.length;
+    let l = 0;
+    let r = 0;
+    for (let i = 0; i < len; i++)
+        for (let j = i; j < len; j++)
+            if (r - l < j - i && isPalindrom(s, i, j)) l = i, r = j;
+    return s.slice(l, r + 1);
 };
 
 const isPalindrom = (s, l, r) => {
