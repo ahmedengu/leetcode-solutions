@@ -9,5 +9,5 @@ function findDuplicate(paths: string[]): string[][] {
         }
     }
 
-    return _.values(_.pickBy(map, (v) => v.length > 1));
+    return _.values(map).filter(v => v.length > 1);
 };
