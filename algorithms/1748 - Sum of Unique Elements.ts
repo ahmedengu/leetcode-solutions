@@ -1,5 +1,5 @@
 function sumOfUnique(nums: number[]): number {
-    return nums
-        .sort()
-        .reduce((acc, v, i, arr) => arr[i] !== arr[i - 1] && arr[i] !== arr[i + 1] ? acc + v : acc, 0);
+    const bucket = new Uint8Array(101);
+    nums.forEach(n => bucket[n]++);
+    return bucket.reduce((acc, v, i) => v === 1 ? acc + i : acc, 0);
 };
