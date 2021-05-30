@@ -1,7 +1,11 @@
 function largestAltitude(gain: number[]): number {
-    return _
-        .chain(gain)
-        .reduce((acc, v, i) => (acc.push(acc[i] + v), acc), [0])
-        .max()
-        .value();
+    let sum = 0;
+    let max = 0;
+
+    for (let i = 0; i < gain.length; i++) {
+        sum += gain[i];
+        if (sum > max) max = sum;
+    }
+
+    return max;
 };
