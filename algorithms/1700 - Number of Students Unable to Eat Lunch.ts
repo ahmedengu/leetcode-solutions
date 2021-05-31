@@ -1,7 +1,7 @@
 function countStudents(students: number[], sandwiches: number[]): number {
     const count = _.countBy(students);
-    for (let i = 0; i < sandwiches.length; i++)
-        if (count[sandwiches[i]]) count[sandwiches[i]]--;
-        else return count[1 - sandwiches[i]];
+    for (const s of sandwiches)
+        if (count[s]) count[s]--;
+        else return count[1 - s];
     return 0;
 };
