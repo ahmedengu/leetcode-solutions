@@ -1,11 +1,5 @@
 function minStartValue(nums: number[]): number {
-    let min = 1;
-    let sum = 0;
+    for (let i = 1; i < nums.length; i++) nums[i] += nums[i - 1];
 
-    for (const num of nums) {
-        sum += num;
-        min = Math.min(min, sum);
-    }
-
-    return min < 1 ? -min + 1 : 1;
+    return Math.max(1, -Math.min.apply(Math, nums) + 1);
 };
