@@ -5,15 +5,11 @@ function longestNiceSubstring(s: string): string {
         const str = [s[i]];
         for (let j = i + 1; j < len; j++) {
             str.push(s[j]);
-            if (isNice(str) && str.length > max.length) max = str.join('')
+            if (isNice(str) && str.length > max.length)
+                max = str.join('');
         }
     }
     return max;
 };
 
-const isNice = (str) => {
-    for (const c of str)
-        if (!str.includes(c.toLowerCase()) || !str.includes(c.toUpperCase()))
-            return false;
-    return true;
-}
+const isNice = (s) => s.every(c => s.includes(c.toLowerCase()) && s.includes(c.toUpperCase()));
