@@ -1,8 +1,8 @@
 function getKth(lo: number, hi: number, k: number): number {
-    const range = new Array(hi - lo + 1);
-    for (let i = 0; i < range.length; i++)
-        range[i] = getPower(lo + i);
-    return lo + range.map((v, i) => ({ v, i }), ['v']).sort((a, b) => a.v - b.v || a.i - b.i)[k - 1].i;
+    return lo + _.sortBy(_.times(hi - lo + 1, i => ({
+        i,
+        v: getPower(lo + i)
+    })), ['v', 'i'])[k - 1].i;
 };
 
 const getPower = (x: number, steps = 0): number => {
