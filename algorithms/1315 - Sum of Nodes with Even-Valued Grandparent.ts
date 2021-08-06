@@ -12,16 +12,8 @@
  * }
  */
 
-function sumEvenGrandparent(root: TreeNode | null): number {
-    let sum = 0;
-
-    (function traverse(node: TreeNode | null, p = 1, gp = 1) {
-        if (node) {
-            if (gp % 2 === 0) sum += node.val;
-            traverse(node.left, node.val, p);
-            traverse(node.right, node.val, p);
-        }
-    })(root);
-
-    return sum;
+function sumEvenGrandparent(root: TreeNode | null, p = 1, gp = 1): number {
+    if (!root) return 0;
+    const val = (gp % 2 === 0) ? root.val : 0;
+    return val + sumEvenGrandparent(root.left, root.val, p) + sumEvenGrandparent(root.right, root.val, p);
 };
