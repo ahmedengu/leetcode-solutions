@@ -13,13 +13,16 @@
  */
 
 function deepestLeavesSum(root: TreeNode | null): number {
-    return _.sum(getLvls(root).pop());
+    const maxDepth = getMaxDepth(root);
+    return getSum(root, maxDepth);
 };
 
-const getLvls = (node: TreeNode | null, depth = 0, lvls = []) => {
-    if (!node) return lvls;
-    (lvls[depth] || (lvls[depth] = [])).push(node.val);
-    getLvls(node.left, depth + 1, lvls);
-    getLvls(node.right, depth + 1, lvls);
-    return lvls;
+const getMaxDepth = (node: TreeNode | null, depth = 0) => {
+    if (!node) return depth;
+    return Math.max(getMaxDepth(node.left, depth + 1), getMaxDepth(node.right, depth + 1));
+}
+
+const getSum = (node: TreeNode | null, maxDepth, depth = 0) => {
+    if (!node) return 0;
+    return getSum(node.left, maxDepth, depth + 1) + getSum(node.right, maxDepth, depth + 1) + (depth + 1 === maxDepth ? node.val : 0);
 }
