@@ -1,8 +1,10 @@
 function groupThePeople(groupSizes: number[]): number[][] {
     const ret = [];
     const groups = {};
+
     for (let i = 0; i < groupSizes.length; i++)
         (groups[groupSizes[i]] || (groups[groupSizes[i]] = [])).push(i);
+
     for (const [key, value] of Object.entries < number[] > (groups)) {
         ret.push([]);
         while (value.length) {
