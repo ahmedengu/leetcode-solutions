@@ -26,7 +26,6 @@ function flatten(root: TreeNode | null) {
     }
 };
 
-
 const getArr = (node: TreeNode, arr = []) => {
     if (!node) return arr;
     arr.push(node.val);
