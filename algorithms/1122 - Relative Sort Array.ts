@@ -10,6 +10,5 @@ function relativeSortArray(arr1: number[], arr2: number[]): number[] {
     }
 
     arr1.sort((a, b) => a - b);
-
     return ret.concat(arr1);
 };
