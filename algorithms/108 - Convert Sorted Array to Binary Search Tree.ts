@@ -12,6 +12,7 @@
  * }
  */
 
+
 function sortedArrayToBST(nums: number[]): TreeNode | null {
     if (!nums || !nums.length) return null;
 
